@@ -1,7 +1,7 @@
 # FSND_Linux_Server
 This README is for my Udacity Full Stack Nanodegree Linux Server Configuration Project. 
 
-IP Address: 54.236.241.225
+Public IP: 107.23.78.87
 
 SSH Port: 2200
 
