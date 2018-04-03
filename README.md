@@ -56,3 +56,11 @@ URL:
 	• type in grader ALL=(ALL:ALL) ALL save and quit
 
 # Create an SSH key pair for grader using the ssh-keygen tool:
+
+# Configure the local timezone to UTC.
+
+	• sudo dpkg-reconfigure tzdata
+
+# Install and configure Apache to serve a Python mod_wsgi application.
+
+# Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser.
