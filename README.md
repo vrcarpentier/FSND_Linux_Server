@@ -28,24 +28,51 @@ URL:
 
 # Update All currently installed packages:
 	• sudo apt-get update
-	• sudo apt-get upgrade (when prompted choose "install the package maintainer's version")
+	• sudo apt-get upgrade 
+		Do you want to continue? Y
+		When prompted choose "install the package maintainer's version"
 	• sudo apt-get autoremove 
+		Do you want to continue? Y
 
 # Create a new user account named grader:
-	• sudo su (to gain acess as root user)
-	• passwd ubuntu (to set password)
+	• sudo su
+		Now you are accessing the VM as the root user
+	• passwd ubuntu 
+		Set the password for user ubuntu
 	• exit
+		Now you are accessing the VM as ubuntu again
 	• sudo adduser grader
+		Enter new UNIX password for user grader
+		Enter Full Name (I chose "Udacity Linux Grader")
+		You can leave all other fields blank
+		Is the information correct? Y
 
 # Give grader the permission to sudo:
-	• sudo usermod -aG sudo grader (to make super user)
+	• sudo usermod -aG sudo grader 
+		This makes grader a super user
 	• sudo su - grader
+		To access VM as grader
 	• sudo adduser menu
+		Enter password for grader
+		Create password for Menu
+		Enter Full Name (I chose "Udacity Menu Project")
+		You can leave all other fields blank
+		Is the information correct? Y
 	
 # Change the SSH port from 22 to 2200:
-   	while still logged in as grader:
-	• sudo nano /etc/hosts (put in "#YOUR STATIC IP# ubuntu" under localhost verbiage)
-	• sudo vi /etc/ssh/sshd_config (Change port 22 to 2200, PermitRootLogin to no, and PasswordAuthentication to yes)
+   	while still logged in as grader (or run sudo su - grader):
+	• sudo nano /etc/hosts 
+		Place your "#STATIC IP# ubuntu" under "127.0.0.1 localhost"
+		CTRL X
+		Y
+		ENTER
+	• sudo nano /etc/ssh/sshd_config 
+		Change port 22 to 2200
+		Change PermitRootLogin to no
+		Change PasswordAuthentication to yes
+		CTRL X
+		Y
+		ENTER
 
 # Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123):
 
@@ -65,11 +92,17 @@ URL:
 	• sudo su - grader
 	• mkdir .ssh
 	• touch .ssh/authorized_keys
-	• vim .ssh/authorized_keys
+	• nano .ssh/authorized_keys
+		Copy the public key generated into the lightsail notepad
+		Then CTRL+SHIFT+V to paste into the terminal
+		on your local machine to this file and save
+		CTRL X
+		Y
+		ENTER
 	• chmod 700 .ssh
 	• chmod 644 .ssh/authorized_keys
 	• sudo service ssh restart
-	• Now you can log in via ssh for your terminal (ssh -i /.ssh/id_rsa grader@YOUR_LIGHTSAIL_IP_HERE -p 2200)	
+		Now you can log in via ssh for your terminal (ssh -i /.ssh/id_rsa grader@YOUR_LIGHTSAIL_IP_HERE -p 2200)	
 
 # Configure the local timezone to UTC.
 
