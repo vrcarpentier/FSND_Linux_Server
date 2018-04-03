@@ -68,8 +68,6 @@ URL:
 		ENTER
 	• sudo nano /etc/ssh/sshd_config 
 		Change port 22 to 2200
-		Change PermitRootLogin to no
-		Change PasswordAuthentication to yes
 		CTRL X
 		Y
 		ENTER
@@ -101,11 +99,14 @@ URL:
 	• chmod 700 .ssh
 	• chmod 644 .ssh/authorized_keys
 	• sudo service ssh restart
-		Now you can log in via ssh for your terminal (ssh -i /.ssh/id_rsa grader@YOUR_LIGHTSAIL_IP_HERE -p 2200)	
+		Now you can log in via ssh for your terminal (ssh -i ~/.ssh/udacity_key.rsa root@35.170.61.252 -p 2200)	
 
 # Configure the local timezone to UTC.
 
 	• sudo dpkg-reconfigure tzdata
+		select "None of the above"
+		select "UTC"
+		
 
 # Install and configure Apache to serve a Python mod_wsgi application.
 
