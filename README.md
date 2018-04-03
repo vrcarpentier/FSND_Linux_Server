@@ -36,31 +36,40 @@ URL:
 	• passwd ubuntu (to set password)
 	• exit
 	• sudo adduser grader
+
+# Give grader the permission to sudo:
 	• sudo usermod -aG sudo grader (to make super user)
 	• sudo su grader
 	• sudo adduser menu
 	
 # Change the SSH port from 22 to 2200:
-   while still logged in as grader:
+   	while still logged in as grader:
 	• sudo nano /etc/hosts (put in static ip here)
 	• sudo vi /etc/ssh/sshd_config (Change port 22 to 2200, PermitRootLogin to no, and PasswordAuthentication to yes)
 
-# Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port    123):
+# Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123):
 
 	• sudo ufw status
 	• sudo ufw default deny incoming
 	• sudo ufw default allow outgoing
 	• sudo ufw allow 2200/tcp
 	• sudo ufw allow 80/tcp
-	• sSudo ufw allow 123/udp
+	• sudo ufw allow 123/udp
+	• sudo ufw allow www
+	• sudo ufw allow ssh
 	• sudo ufw enable
-
-# Give grader the permission to sudo:
-
-	• sudo nano /etc/sudoers.d/grader
-	• type in grader ALL=(ALL:ALL) ALL save and quit
+	• sudo ufw status
+	• sudo service ssh restart
 
 # Create an SSH key pair for grader using the ssh-keygen tool:
+	• sudo su - grader
+	• mkdir .ssh
+	• touch .ssh/authorized_keys
+	• vim .ssh/authorized_keys
+	• chmod 700 .ssh
+	• chmod 644 .ssh/authorized_keys
+	• sudo service ssh restart
+	• Now you can log in via ssh for your terminal (ssh -i /.ssh/id_rsa grader@YOUR_LIGHTSAIL_IP_HERE -p 2200)	
 
 # Configure the local timezone to UTC.
 
