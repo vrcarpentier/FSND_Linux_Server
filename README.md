@@ -102,7 +102,7 @@ URL:
 	• chmod 700 .ssh
 	• chmod 644 .ssh/authorized_keys
 	• sudo service ssh restart
-		Now you can log in via ssh for your terminal (ssh -i ~/.ssh/udacity_key.rsa root@54.236.241.225 -p 2200)	
+		Now you can log in via ssh for your terminal (ssh -i ~/.ssh/udacity_key.rsa grader@107.23.78.87 -p 2200)	
 
 # Configure the local timezone to UTC.
 
