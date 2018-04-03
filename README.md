@@ -39,12 +39,12 @@ URL:
 
 # Give grader the permission to sudo:
 	• sudo usermod -aG sudo grader (to make super user)
-	• sudo su grader
+	• sudo su - grader
 	• sudo adduser menu
 	
 # Change the SSH port from 22 to 2200:
    	while still logged in as grader:
-	• sudo nano /etc/hosts (put in static ip here)
+	• sudo nano /etc/hosts (put in "#YOUR STATIC IP# ubuntu" under localhost verbiage)
 	• sudo vi /etc/ssh/sshd_config (Change port 22 to 2200, PermitRootLogin to no, and PasswordAuthentication to yes)
 
 # Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123):
