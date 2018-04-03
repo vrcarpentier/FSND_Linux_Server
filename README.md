@@ -86,7 +86,8 @@ URL:
 	• cd
 	• touch .ssh/authorized_keys
 	• chmod 600 .ssh/authorized_keys
-	• Copy your public key, and then use the Linux cat command (cat>>.ssh/authorized_keys) to paste the public key into the .ssh/authorized keys file for the new user grader.		
+	• Copy your public key, and then use the Linux cat command (cat>>.ssh/authorized_keys) to paste the public key into the .ssh/authorized keys file for the new user grader.
+	• To exit cat, enter EOF (Ctrl-D)
 
 # Configure the local timezone to UTC.
 
