@@ -1,7 +1,7 @@
 # FSND_Linux_Server
 This README is for my Udacity Full Stack Nanodegree Linux Server Configuration Project. 
 
-Public IP: 107.23.78.87
+Public IP: 
 
 SSH Port: 2200
 
@@ -37,17 +37,13 @@ URL:
 		Do you want to continue? Y
 
 # Create a new user account named grader:
-	• sudo su
-		Now you are accessing the VM as the root user
-	• passwd ubuntu 
-		Set the password for user ubuntu
-	• exit
-		Now you are accessing the VM as ubuntu again
-	• sudo adduser grader
-		Enter new UNIX password for user grader
+	• sudo adduser grader --disabled-password
 		Enter Full Name (I chose "Udacity Linux Grader")
 		You can leave all other fields blank
 		Is the information correct? Y
+		
+	
+		
 
 # Give grader the permission to sudo:
 	•sudo vim /etc/sudoers
@@ -90,19 +86,24 @@ URL:
 	• sudo service ssh restart
 
 # Create an SSH key pair for grader using the ssh-keygen tool:
-	• sudo su - grader
+	• sudo su grader
+	• cd
 	• mkdir .ssh
-	• touch .ssh/authorized_keys
-	• nano .ssh/authorized_keys
-		Copy the public key generated into the lightsail notepad
-		Then CTRL+SHIFT+V to paste into the terminal
-		CTRL X
-		Y
-		ENTER
 	• chmod 700 .ssh
-	• chmod 644 .ssh/authorized_keys
-	• sudo service ssh restart
-		Now you can log in via ssh for your terminal (ssh -i ~/.ssh/udacity_key.rsa grader@107.23.78.87 -p 2200)	
+	• cd
+	• touch .ssh/authorized_keys
+	• chmod 600 .ssh/authorized_keys
+	
+	 Creating your key pair using the Amazon EC2 console:
+	 	• Open the Amazon EC2 console
+		• In the navigation pane, under NETWORK & SECURITY, choose Key Pairs
+		• Choose Create Key Pair. 
+		• Enter a name for the new key pair in the Key pair name field of the Create Key Pair dialog box, and then choose Create. 
+		• The private key file is automatically downloaded by your browser. The base file name is the name you specified as the name of your key pair, and the file name extension is .pem. Save the private key file in a safe place. 
+		
+		
+	
+	
 
 # Configure the local timezone to UTC.
 
