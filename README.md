@@ -24,18 +24,26 @@ URL:
 14. Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!
 
 # Steps done to complete project:
+	• login to the lightsail instance using the SSH method from your browser
 
 # Update All currently installed packages:
+	• sudo apt-get update
+	• sudo apt-get upgrade (when prompted choose "install the package maintainer's version")
+	• sudo apt-get autoremove 
 
-	• sudo apt-get update,
-	• sudo apt-get upgrade, 
-	• sudo apt-get autoremove, 
-	• sudo apt-get install finger
-
+# Create a new user account named grader:
+	• sudo su (to gain acess as root user)
+	• passwd ubuntu (to set password)
+	• exit
+	• sudo adduser grader
+	• sudo usermod -aG sudo grader (to make super user)
+	• sudo su grader
+	• sudo adduser menu
+	
 # Change the SSH port from 22 to 2200:
-
-	• sudo vi /etc/ssh/sshd_config
-	• Change port 22 to 2200
+   while still logged in as grader:
+	• sudo nano /etc/hosts (put in static ip here)
+	• sudo vi /etc/ssh/sshd_config (Change port 22 to 2200, PermitRootLogin to no, and PasswordAuthentication to yes)
 
 # Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port    123):
 
@@ -46,10 +54,6 @@ URL:
 	• sudo ufw allow 80/tcp
 	• sSudo ufw allow 123/udp
 	• sudo ufw enable
-
-# Create a new user account named grader:
-
-	• sudo adduser grader
 
 # Give grader the permission to sudo:
 
