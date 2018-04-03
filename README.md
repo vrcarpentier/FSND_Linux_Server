@@ -42,20 +42,21 @@ URL:
 		You can leave all other fields blank
 		Is the information correct? Y
 		
-	
-		
-
 # Give grader the permission to sudo:
-	•sudo vim /etc/sudoers
+	• sudo vim /etc/sudoers.d/grader
 		i to get into insert mode
-		add grader ALL=(ALL) NOPASSWD:ALL
+		add grader ALL=(ALL) ALL
 		esc to exit insert mode
 		:wq!
+	• disable ssh login for root user
+		sudo nano /etc/ssh/sshd_config
+		change PermitRootLogin to no
+		sudo service ssh restart
 		
 # Change the SSH port from 22 to 2200:
    	• sudo su - grader
 	• sudo nano /etc/hosts 
-		Place your "#STATIC IP# ubuntu" under "127.0.0.1 localhost"
+		Place your "127.0.1.1 ip-10-20-52-12" under "127.0.0.1 localhost"
 		CTRL X
 		Y
 		ENTER
@@ -73,11 +74,8 @@ URL:
 	• sudo ufw allow 2200/tcp
 	• sudo ufw allow 80/tcp
 	• sudo ufw allow 123/udp
-	• sudo ufw allow www
-	• sudo ufw allow ssh
 	• sudo ufw enable
 	• sudo ufw status
-	• sudo service ssh restart
 
 # Create an SSH key pair for grader using the ssh-keygen tool:
 	• sudo su grader
@@ -95,7 +93,6 @@ URL:
 		select "None of the above"
 		select "UTC"
 		
-
 # Install and configure Apache to serve a Python mod_wsgi application.
 
 # Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser.
