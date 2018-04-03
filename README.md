@@ -48,13 +48,7 @@ URL:
 # Give grader the permission to sudo:
 	•sudo vim /etc/sudoers
 		i to get into insert mode
-		add grader ALL=(ALL:ALL) ALL
-		esc to exit insert mode
-		:wq!
-	•sudo touch /etc/sudoers.d/grader
-	•sudo vim /etc/sudoers.d/grader 
-		i to get into insert mode
-		add grader ALL=(ALL:ALL) ALL
+		add grader ALL=(ALL) NOPASSWD:ALL
 		esc to exit insert mode
 		:wq!
 		
@@ -133,3 +127,4 @@ https://aws.amazon.com/premiumsupport/knowledge-center/new-user-accounts-linux-i
 https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html#how-to-generate-your-own-key-and-import-it-to-aws
 https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair
 https://forums.aws.amazon.com/thread.jspa?threadID=160352
+http://brianflove.com/2013/06/18/add-new-sudo-user-to-ec2-ubuntu/
