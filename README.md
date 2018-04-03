@@ -94,16 +94,28 @@ URL:
 	• touch .ssh/authorized_keys
 	• chmod 600 .ssh/authorized_keys
 	
-	 Creating your key pair using the Amazon EC2 console:
-	 	• Open the Amazon EC2 console
-		• In the navigation pane, under NETWORK & SECURITY, choose Key Pairs
+	To import your public key.
+	 	• Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/. 
+		• In the navigation pane, under NETWORK & SECURITY, choose Key Pairs. 
 		• Choose Create Key Pair. 
-		• Enter a name for the new key pair in the Key pair name field of the Create Key Pair dialog box, and then choose Create. 
+		• Enter a name for the new key pair in the Key pair name field of the Create Key Pair dialog box, and then choose Create.
 		• The private key file is automatically downloaded by your browser. The base file name is the name you specified as the name of your key pair, and the file name extension is .pem. Save the private key file in a safe place. 
+		• On your local Windows computer, you can use PuTTYgen to get the public key for your key pair.
+		• Start PuTTYgen, choose Load, and select the .ppk or .pem file. PuTTYgen displays the public key. 
+		• Copy the public key, and then use the Linux cat command to paste the public key into the .ssh/authorized keys file for the new user grader. 
+		
+	After you copy the public key, use the command shell session that is running under the context of the new user account to confirm that you have permission to add the public key to the .ssh/authorized_keys file for this account:
+		• Run the cat command in append mode (cat >> .ssh/authorized_keys).
+		• Paste the public key into the open cat prompt, and then press Enter.
+		• Press and hold Ctrl+D to exit cat and return to the command session prompt.
+		
+	To verify that you can connect to your EC2 instance via SSH as new_user, run the following command from the command line on your local computer:
+		• ssh -i /path/new_key_pair.pem new_user@public_dns_name_of_EC2_Linux_instance
+		• To connect to your EC2 Linux instance using SSH from Windows, follow the steps at Connecting to Your Linux Instance from Windows Using PuTTY.
+		• After you connect to your instance as new_user by using SSH, run the following command from the EC2 instance command line to view the user and group information created for the new_user account:
+		• id
 		
 		
-	
-	
 
 # Configure the local timezone to UTC.
 
@@ -115,3 +127,8 @@ URL:
 # Install and configure Apache to serve a Python mod_wsgi application.
 
 # Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser.
+
+# References:
+https://aws.amazon.com/premiumsupport/knowledge-center/new-user-accounts-linux-instance/
+https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html#how-to-generate-your-own-key-and-import-it-to-aws
+https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair
