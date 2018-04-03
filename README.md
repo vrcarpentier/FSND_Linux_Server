@@ -5,7 +5,7 @@ SSH Port: 2200
 
 URL: 
 
-# Instructions:
+# Course Instructions:
 1. Start a new Ubuntu Linux server instance on Amazon Lightsail.
 2. Follow the instructions provided to SSH into your server.
 3. Update all currently installed packages.
@@ -23,6 +23,7 @@ URL:
 13. Clone and setup your Item Catalog project from the Github repository you created earlier in this Nanodegree program.
 14. Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!
 
+# Steps done to complete project:
 
 # Update All currently installed packages:
 
