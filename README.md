@@ -5,7 +5,7 @@ SSH Port: 2200
 
 URL: 
 
-Instructions:
+# Instructions:
 1. Start a new Ubuntu Linux server instance on Amazon Lightsail.
 2. Follow the instructions provided to SSH into your server.
 3. Update all currently installed packages.
@@ -24,19 +24,19 @@ Instructions:
 14. Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!
 
 
-Update All currently installed packages:
+# Update All currently installed packages:
 
 	• sudo apt-get update,
 	• sudo apt-get upgrade, 
 	• sudo apt-get autoremove, 
 	• sudo apt-get install finger
 
-Change the SSH port from 22 to 2200:
+# Change the SSH port from 22 to 2200:
 
 	• sudo vi /etc/ssh/sshd_config
 	• Change port 22 to 2200
 
-Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port    123):
+# Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port    123):
 
 	• sudo ufw status
 	• sudo ufw default deny incoming
@@ -46,13 +46,13 @@ Configure the Uncomplicated Firewall (UFW) to only allow incoming connections fo
 	• sSudo ufw allow 123/udp
 	• sudo ufw enable
 
-Create a new user account named grader:
+# Create a new user account named grader:
 
 	• sudo adduser grader
 
-Give grader the permission to sudo:
+# Give grader the permission to sudo:
 
 	• sudo nano /etc/sudoers.d/grader
 	• type in grader ALL=(ALL:ALL) ALL save and quit
 
-Create an SSH key pair for grader using the ssh-keygen tool:
+# Create an SSH key pair for grader using the ssh-keygen tool:
