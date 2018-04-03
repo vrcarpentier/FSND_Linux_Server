@@ -1,5 +1,7 @@
 # FSND_Linux_Server
-IP Address: 35.170.61.252
+This README is for my Udacity Full Stack Nanodegree Linux Server Configuration Project. 
+
+IP Address: 54.236.241.225
 
 SSH Port: 2200
 
@@ -48,17 +50,12 @@ URL:
 		Is the information correct? Y
 
 # Give grader the permission to sudo:
-	• sudo usermod -aG sudo grader 
-		This makes grader a super user
-	• sudo su - grader
-		To access VM as grader
-	• sudo adduser menu
-		Enter password for grader
-		Create password for Menu
-		Enter Full Name (I chose "Udacity Menu Project")
-		You can leave all other fields blank
-		Is the information correct? Y
-	
+	•vim /etc/sudoers
+	•touch /etc/sudoers.d/grader
+	•vim /etc/sudoers.d/grader 
+		add grader ALL=(ALL:ALL) ALL
+		:wq!
+		
 # Change the SSH port from 22 to 2200:
    	while still logged in as grader (or run sudo su - grader):
 	• sudo nano /etc/hosts 
@@ -99,7 +96,7 @@ URL:
 	• chmod 700 .ssh
 	• chmod 644 .ssh/authorized_keys
 	• sudo service ssh restart
-		Now you can log in via ssh for your terminal (ssh -i ~/.ssh/udacity_key.rsa root@35.170.61.252 -p 2200)	
+		Now you can log in via ssh for your terminal (ssh -i ~/.ssh/udacity_key.rsa root@54.236.241.225 -p 2200)	
 
 # Configure the local timezone to UTC.
 
