@@ -37,7 +37,8 @@ URL:
 		Do you want to continue? Y
 
 # Create a new user account named grader:
-	• sudo adduser grader --disabled-password
+	• sudo adduser grader 
+		Create password for grader
 		Enter Full Name (I chose "Udacity Linux Grader")
 		You can leave all other fields blank
 		Is the information correct? Y
