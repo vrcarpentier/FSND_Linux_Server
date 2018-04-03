@@ -50,10 +50,16 @@ URL:
 		Is the information correct? Y
 
 # Give grader the permission to sudo:
-	•vim /etc/sudoers
-	•touch /etc/sudoers.d/grader
-	•vim /etc/sudoers.d/grader 
+	•sudo vim /etc/sudoers
+		i to get into insert mode
 		add grader ALL=(ALL:ALL) ALL
+		esc to exit insert mode
+		:wq!
+	•sudo touch /etc/sudoers.d/grader
+	•sudo vim /etc/sudoers.d/grader 
+		i to get into insert mode
+		add grader ALL=(ALL:ALL) ALL
+		esc to exit insert mode
 		:wq!
 		
 # Change the SSH port from 22 to 2200:
