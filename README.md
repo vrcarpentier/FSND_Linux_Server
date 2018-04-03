@@ -49,10 +49,6 @@ URL:
 		add grader ALL=(ALL) ALL
 		esc to exit insert mode
 		:wq!
-	• disable ssh login for root user
-		sudo nano /etc/ssh/sshd_config
-		change PermitRootLogin to no
-		sudo service ssh restart
 		
 # Change the SSH port from 22 to 2200:
    	• sudo su - grader
@@ -66,6 +62,10 @@ URL:
 		CTRL X
 		Y
 		ENTER
+	• disable ssh login for root user
+		sudo nano /etc/ssh/sshd_config
+		change PermitRootLogin to no
+		sudo service ssh restart
 
 # Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123):
 
