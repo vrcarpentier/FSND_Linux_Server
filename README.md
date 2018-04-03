@@ -1,5 +1,5 @@
 # FSND_Linux_Server
-IP Address: 35.153.156.123
+IP Address: 54.236.58.101
 
 SSH Port: 2200
 
