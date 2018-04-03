@@ -43,7 +43,7 @@ URL:
 		Is the information correct? Y
 		
 # Give grader the permission to sudo:
-	• sudo vim /etc/sudoers.d/grader
+	• sudo vim /etc/sudoers
 		i to get into insert mode
 		add grader ALL=(ALL) ALL
 		esc to exit insert mode
