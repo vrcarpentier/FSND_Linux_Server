@@ -63,7 +63,7 @@ URL:
 		:wq!
 		
 # Change the SSH port from 22 to 2200:
-   	while still logged in as grader (or run sudo su - grader):
+   	• sudo su - grader
 	• sudo nano /etc/hosts 
 		Place your "#STATIC IP# ubuntu" under "127.0.0.1 localhost"
 		CTRL X
