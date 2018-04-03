@@ -95,7 +95,6 @@ URL:
 	• nano .ssh/authorized_keys
 		Copy the public key generated into the lightsail notepad
 		Then CTRL+SHIFT+V to paste into the terminal
-		on your local machine to this file and save
 		CTRL X
 		Y
 		ENTER
