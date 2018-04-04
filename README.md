@@ -121,9 +121,10 @@ URL:
 	• sudo apt-get install git
 	• cd /var/www
 	• sudo mkdir FlaskApp
+	• git clone https://github.com/vrcarpentier/FSND_Catalog.git
 	• sudo mv ./Item_Catalog_UDACITY ./FlaskApp
 	• cd FlaskApp
-	• git clone https://github.com/vrcarpentier/FSND_Catalog.git
+	• 
 	• Rename website.py to __init__.py using sudo mv website.py __init__.py
 	• Edit database_setup.py, website.py and functions_helper.py and change engine = create_engine('sqlite:///toyshop.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog')
 	• Install pip sudo apt-get install python-pip
