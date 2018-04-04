@@ -26,7 +26,8 @@ URL:
 14. Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!
 
 # Steps done to complete project:
-	• login to the lightsail instance using the SSH method from your browser
+	• download SSH key pair from lightsail insatance account page
+	• ssh -i ~/.ssh/udacity_key.pem ubuntu@public_ip_address
 
 # Update All currently installed packages:
 	• sudo apt-get update
