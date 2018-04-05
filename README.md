@@ -75,7 +75,7 @@ This project is linked to the Configuring Linux Web Servers course, which teache
 		• sudo chmod 700 .ssh
 		• sudo chmod 644 .ssh/authorized_keys
 	Now, you should be able to log in from your local machine as grader
-		• ssh grader@PUBLIC_IP -p 2200 -` ~/.ssh/udacity_key_rsa
+		• ssh grader@PUBLIC_IP -p 2200 ~/.ssh/udacity_key_rsa
 		• sudo nano /etc/ssh/sshd_config
 			Change PasswordAuthentication from yes to no
 # Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123):
