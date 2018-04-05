@@ -1,7 +1,8 @@
 # FSND_Linux_Server
-This README is for my Udacity Full Stack Nanodegree Linux Server Configuration Project. 
+This project is linked to the Configuring Linux Web Servers course, which teaches you to secure and set up a Linux server. By the end of this project, you will have one of your web applications running live on a secure web server.
 
 Public IP: 35.173.1.129
+
 SSH Port: 2200
 
 URL: 
@@ -29,13 +30,6 @@ URL:
 	• save it the file as udacity_key.rsa in your local .ssh directory
 	• ssh -i ~/.ssh/udacity_key.pem ubuntu@35.173.1.129
 
-# Update All currently installed packages:
-	• sudo apt-get update
-	• sudo apt-get upgrade 
-		Do you want to continue? Y
-		When prompted choose "install the package maintainer's version"
-	• sudo apt-get autoremove 
-		Do you want to continue? Y
 
 # Create a new user account named grader:
 	• sudo adduser grader 
@@ -45,29 +39,26 @@ URL:
 		Is the information correct? Y
 		
 # Give grader the permission to sudo:
-	• sudo vim /etc/sudoers
-		i to get into insert mode
+	• sudo visudo
 		add grader ALL=(ALL) ALL
-		esc to exit insert mode
-		:wq!
+		CTRL X
+		Y
+		ENTER
+		
+# Update All currently installed packages:
+	• sudo apt-get update
+	• sudo apt-get upgrade 
+		Do you want to continue? Y
+		When prompted choose "install the package maintainer's version"
 		
 # Change the SSH port from 22 to 2200:
    	• sudo su - grader
-	• sudo nano /etc/hosts 
-		Place your "127.0.1.1 ip-10-20-52-12" under "127.0.0.1 localhost"
-		CTRL X
-		Y
-		ENTER
 	• sudo nano /etc/ssh/sshd_config 
 		Change port 22 to 2200
-		CTRL X
-		Y
-		ENTER
-	• disable ssh login for root user
-		sudo nano /etc/ssh/sshd_config
-		change PermitRootLogin to no
-		sudo service ssh restart
-
+		Change PermitRootLogin from without-password to no
+		Change PasswordAuthentication to yes
+	• sudo service ssh restart
+		
 # Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123):
 
 	• sudo ufw status
@@ -92,7 +83,6 @@ URL:
 
 # Configure the local timezone to UTC.
 
-	• sudo dpkg-reconfigure tzdata
 		select "None of the above"
 		select "UTC"
 		
@@ -101,30 +91,23 @@ URL:
 	• sudo apt-get install libapache2-mod-wsgi python-dev
 	• sudo service apache2 restart
 	
-	Install and configure ProstgreSQL
-		• Install PostgreSQL sudo apt-get install postgresql
-		• Check if no remote connections are allowed sudo vim /etc/postgresql/9.3/main/pg_hba.conf
-		• Login as user "postgres" sudo su - postgres
-		• Get into postgreSQL shell psql
-		• Create a new database named catalog and create a new user named catalog in postgreSQL shell
-			postgres=# CREATE DATABASE catalog;
-			postgres=# CREATE USER catalog;
-		• Set a password for user catalog
-			postgres=# ALTER ROLE catalog WITH PASSWORD 'password';
-		• Give user "catalog" permission to "catalog" application database
-			postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
-		• Quit postgreSQL postgres=# \q
-		• Exit from user "postgres"
-			exit
+	• sudo apt-get install postgresql
+	• sudo su - postgres
+	• psql
+	• CREATE DATABASE catalog;
+	• CREATE USER catalog;
+	• ALTER ROLE catalog WITH PASSWORD 'password';
+	• GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
+	• \q
+	• exit
 
 # Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser.
 	• sudo apt-get install git
 	• cd /var/www
-	• sudo mkdir FlaskApp
+	• sudo mkdir app
 	• git clone https://github.com/vrcarpentier/FSND_Catalog.git
 	• sudo mv ./Item_Catalog_UDACITY ./FlaskApp
 	• cd FlaskApp
-	• 
 	• Rename website.py to __init__.py using sudo mv website.py __init__.py
 	• Edit database_setup.py, website.py and functions_helper.py and change engine = create_engine('sqlite:///toyshop.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog')
 	• Install pip sudo apt-get install python-pip
