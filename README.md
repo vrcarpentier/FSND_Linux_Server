@@ -1,8 +1,7 @@
 # FSND_Linux_Server
 This README is for my Udacity Full Stack Nanodegree Linux Server Configuration Project. 
 
-Public IP: 34.200.254.6
-
+Public IP: 35.173.1.129
 SSH Port: 2200
 
 URL: 
@@ -27,7 +26,8 @@ URL:
 
 # Steps done to complete project:
 	• download SSH key pair from lightsail insatance account page
-	• ssh -i ~/.ssh/udacity_key.pem ubuntu@public_ip_address
+	• save it the file as udacity_key.rsa in your local .ssh directory
+	• ssh -i ~/.ssh/udacity_key.pem ubuntu@35.173.1.129
 
 # Update All currently installed packages:
 	• sudo apt-get update
