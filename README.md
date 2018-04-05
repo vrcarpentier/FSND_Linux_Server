@@ -25,19 +25,29 @@ This project is linked to the Configuring Linux Web Servers course, which teache
 
 # Software Installed:
 • apache2: Linux Web Server
+
 • mod-wsgi: apache module for hosting python applications
+
 • python-setuptools: For easily downloading, updating, developing python tools
+
 • pip: Python package manager
+
 • Flask: Python Web Development framework
+
 • SQLAlchemy: SQL Object Relational mapper for python
 • Postgresql: Object relational DBMS
+
 • httplib2: HTTP client library for python
+
 • requests: Another python HTTP library
+
 • oauth2client: Authentication API for secure Facebook and Google Plus login.
+
 • psychopg2: postgresql adapter for python
 
 # Login to server:
 Download the default AWS keypair
+
 Login as ubuntu by running ssh ubuntu@54.236.63.16 -p 22 -i ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
 	
 # Create a new user account named grader:
