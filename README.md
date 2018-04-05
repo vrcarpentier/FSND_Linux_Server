@@ -70,7 +70,7 @@ This project is linked to the Configuring Linux Web Servers course, which teache
 		• sudo su - grader
 		• sudo mkdir .ssh
 		• touch .ssh/authorized_keys
-		• Copy your public key into the authorized_keys file
+		• sudo nano .ssh/authorized_keys and paste your public key into the authorized_keys file
 		• sudo chmod 700 .ssh
 		• sudo chmod 644 .ssh/authorized_keys
 	Now, you should be able to log in from your local machine as grader
