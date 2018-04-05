@@ -35,6 +35,10 @@ This project is linked to the Configuring Linux Web Servers course, which teache
 • requests: Another python HTTP library
 • oauth2client: Authentication API for secure Facebook and Google Plus login.
 • psychopg2: postgresql adapter for python
+
+# Login to server:
+Download the default AWS keypair
+Login as ubuntu by running ssh ubuntu@54.236.63.16 -p 22 -i ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
 	
 # Create a new user account named grader:
 	• sudo adduser grader 
@@ -60,7 +64,6 @@ This project is linked to the Configuring Linux Web Servers course, which teache
 			UseDNS no
 			AllowUsers grader
 	• sudo service ssh restart
-		
 
 
 # Create an SSH key pair for grader using the ssh-keygen tool:
@@ -75,9 +78,10 @@ This project is linked to the Configuring Linux Web Servers course, which teache
 		• sudo chmod 700 .ssh
 		• sudo chmod 644 .ssh/authorized_keys
 	Now, you should be able to log in from your local machine as grader
-		• ssh grader@PUBLIC_IP -p 2200 ~/.ssh/udacity_key_rsa
+		• ssh grader@PUBLIC_IP -p 2200 ~/.ssh/udacity_keypair
 		• sudo nano /etc/ssh/sshd_config
 			Change PasswordAuthentication from yes to no
+		• sudo service ssh restart
 # Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123):
 	• sudo ufw default deny incoming 
 	• sudo ufw default allow outgoing
