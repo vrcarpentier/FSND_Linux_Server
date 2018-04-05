@@ -1,7 +1,8 @@
 # FSND_Linux_Server
 This project is linked to the Configuring Linux Web Servers course, which teaches you to secure and set up a Linux server. By the end of this project, you will have one of your web applications running live on a secure web server.
 
-• Public IP: 35.173.1.129
+• Public IP: 34.201.1.86
+
 • SSH Port: 2200
 
 # Course Instructions:
