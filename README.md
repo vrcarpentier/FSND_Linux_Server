@@ -54,7 +54,7 @@ This project is linked to the Configuring Linux Web Servers course, which teache
 	• sudo nano /etc/ssh/sshd_config 
 		Change port 22 to 2200
 		Change PermitRootLogin from without-password to no
-		Change PasswordAuthentication from yes to no (this is only temporary).
+		Change PasswordAuthentication from no to yes
 		Add the following to the end of the file: 
 			UseDNS no
 			AllowUsers grader
