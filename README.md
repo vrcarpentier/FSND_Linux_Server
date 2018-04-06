@@ -70,7 +70,6 @@ Login as ubuntu by running ssh ubuntu@54.236.63.16 -p 22 -i ~/.ssh/LightsailDefa
 		Change PermitRootLogin from without-password to no
 		Change PasswordAuthentication from no to yes
 		Add the following to the end of the file: 
-			UseDNS no
 			AllowUsers grader
 
 # Create an SSH key pair for grader using the ssh-keygen tool:
