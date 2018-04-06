@@ -105,12 +105,25 @@ Login as ubuntu by running ssh ubuntu@54.236.63.16 -p 22 -i ~/.ssh/LightsailDefa
 	• select "None of the above"
 	• select "UTC"
 		
+Now I can login remotely as grader by running 
+	• ssh grader@54.236.63.16 -p 2200 -i ~/.ssh/udacity_keypair
+
 # Install and configure Apache to serve a Python mod_wsgi application.
 	• sudo apt-get install ntp
 	
 	• sudo apt-get install apache2
 	• sudo apt-get install libapache2-mod-wsgi python-dev
 	• sudo service apache2 restart
+	
+	• sudo apt-get install git
+	• git config --global user.name 'vrcarpentier'
+	• git config --global user.email 'vrcarpentier@gmail.com'
+	
+	sudo apt-get install libapache2-mod-wsgi python-dev
+	cd /var/www
+	sudo mkdir catalog 
+	cd catalog
+	sudo mkdir catalog
 	
 	• sudo apt-get install postgresql
 	• sudo su - postgres
