@@ -72,8 +72,6 @@ Login as ubuntu by running ssh ubuntu@54.236.63.16 -p 22 -i ~/.ssh/LightsailDefa
 		Add the following to the end of the file: 
 			UseDNS no
 			AllowUsers grader
-	• sudo service ssh restart
-
 
 # Create an SSH key pair for grader using the ssh-keygen tool:
 	While in the terminal of you local machine:
