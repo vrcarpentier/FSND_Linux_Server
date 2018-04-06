@@ -65,7 +65,6 @@ Login as ubuntu by running ssh ubuntu@54.236.63.16 -p 22 -i ~/.ssh/LightsailDefa
 	• sudo apt-get upgrade 
 		
 # Change the SSH port from 22 to 2200:
-   	• sudo su - grader
 	• sudo nano /etc/ssh/sshd_config 
 		Change port 22 to 2200
 		Change PermitRootLogin from without-password to no
