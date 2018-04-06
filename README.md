@@ -101,7 +101,7 @@ Login as ubuntu by running ssh ubuntu@54.236.63.16 -p 22 -i ~/.ssh/LightsailDefa
 	• sudo ufw enable
 	
 # Configure the local timezone to UTC.
-	• sudo dkpg-reconfigure tzdata
+	• sudo dpkg-reconfigure tzdata
 	• select "None of the above"
 	• select "UTC"
 		
