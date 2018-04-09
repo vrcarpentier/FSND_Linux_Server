@@ -106,12 +106,12 @@ Now I can login remotely as grader by running
 (Below steps are not working to get app up and running)
 # Install and configure Apache to serve a Python mod_wsgi application:	
 	• sudo apt-get install apache2
-	• sudo apt-get install python-setuptools libapache2-mod-wsgi
+	• sudo apt-get install python-setuptools
+	• sudo apt-get install libapache2-mod-wsgi
 	• sudo service apache2 restart
 	(now you can go to your ip address in your browser and see an apache2 message)
 	
 	• sudo apt-get install postgresql
-	• Check if no remote connections are allowed sudo vi /etc/postgresql/9.3/main/pg_hba.conf
 	• sudo su - postgres
 	• psql
 	• postgres=# CREATE DATABASE catalog;
@@ -132,20 +132,28 @@ Now I can login remotely as grader by running
 	• cd FlaskApp
 	• cd catalog
 	• sudo mv webserver.py __init__.py
+		from flask import Flask
+
+      		app = Flask(__name__)
+		
+		@app.route('/')
+		def homepage():
+		    return  "VC808G Test Page"
+		
+		if __name__ == "__main__":
+        	    app.run()
 	• sudo nano database_setup.py and change engine = create_engine('sqlite:///catalog.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog')
 	• sudo nano lotsofmenus.py and change engine = create_engine('sqlite:///catalog.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog').
 	• sudo apt-get install python-pip
-	• sudo pip install sqlalchemy flask-sqlalchemy psycopg2 bleach requests
-	• sudo pip install flask packaging oauth2client redis passlib flask-httpauth
-	• sudo apt-get -qqy install postgresql python-psycopg2
-	• sudo python database_setup.py
-	• sudo pip install lotsofmenus.py
-	
-	• sudo vi /etc/apache2/sites-available/FlaskApp.conf
-	• paste in:
+	sudo pip install virtualenv
+	sudo virtualenv venv
+	source venv/bin/activate
+	sudo pip isntall Flask
+	deactivate
+	sudo nano /etc/apache2/sites-available/FlaskApp.conf
 		<VirtualHost *:80>
-			ServerName fill_catalog.py
-			ServerAdmin mehraaditya713@gmail.com
+			ServerName lotsofmenus.py
+			ServerAdmin vrcarpentier@gmail.com
 			WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi
 			<Directory /var/www/FlaskApp/FlaskApp/>
 				Order allow,deny
@@ -160,22 +168,27 @@ Now I can login remotely as grader by running
 			LogLevel warn
 			CustomLog ${APACHE_LOG_DIR}/access.log combined
 		</VirtualHost>
-	• sudo service apache2 reload
-	
-	• cd /var/www/FlaskApp
-	• sudo vi FlaskApp.wsgi
-	• paste in:
-		#!/usr/bin/python
+	sudo a2ensite FlaskApp
+	service apache2 reload
+	cd /var/www/flaskapp
+	sudo nano flaskapp.wsgi
+		#! /usr/bing/python
+
 		import sys
 		import logging
+
 		logging.basicConfig(stream=sys.stderr)
-		sys.path.insert(0,"/var/www/FlaskApp/")
+		sys.path.insert(0, "/var/www/FlaskApp/")
 
 		from FlaskApp import app as application
-		application.secret_key = 'super_secret_key'
-
-	• Restart Apache sudo service apache2 restart
-	
+		application.secret_key = "super_secret_key"
+		
+	sudo service apache2 restart
+	• sudo pip install sqlalchemy flask-sqlalchemy psycopg2 bleach requests
+	• sudo pip install flask packaging oauth2client redis passlib flask-httpauth
+	• sudo apt-get -qqy install postgresql python-psycopg2
+	• sudo python database_setup.py
+	• sudo pip install lotsofmenus.py	
 
 # References:
 https://aws.amazon.com/premiumsupport/knowledge-center/new-user-accounts-linux-instance/
