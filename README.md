@@ -103,6 +103,7 @@ Login as ubuntu by running ssh ubuntu@34.205.53.16 -p 22 -i ~/.ssh/LightsailDefa
 Now I can login remotely as grader by running 
 	• ssh grader@34.205.53.16 -p 2200 -i ~/.ssh/udacity_keypair
 
+(Below steps are not working to get app up and running)
 # Install and configure Apache to serve a Python mod_wsgi application:	
 	• sudo apt-get install apache2
 	• sudo apt-get install python-setuptools libapache2-mod-wsgi
@@ -173,56 +174,6 @@ Now I can login remotely as grader by running
 		from FlaskApp import app as application
 		application.secret_key = 'super_secret_key'
 
-
-
-
-
-	
-	
-	• sudo mv ./Item_Catalog_UDACITY ./FlaskApp
-	• cd FlaskApp
-	• Rename website.py to __init__.py using sudo mv website.py __init__.py
-	• Edit database_setup.py, website.py and functions_helper.py and change engine = create_engine('sqlite:///toyshop.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog')
-	• Install pip sudo apt-get install python-pip
-	• Use pip to install dependencies sudo pip install -r requirements.txt
-	• Install psycopg2 sudo apt-get -qqy install postgresql python-psycopg2
-	• Create database schema sudo python database_setup.py
-	
-	
-	• Create FlaskApp.conf to edit: sudo nano /etc/apache2/sites-available/FlaskApp.conf
-	• Add the following lines of code to the file to configure the virtual host.
-		<VirtualHost *:80>
-			ServerName 52.24.125.52
-			ServerAdmin qiaowei8993@gmail.com
-			WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi
-			<Directory /var/www/FlaskApp/FlaskApp/>
-				Order allow,deny
-				Allow from all
-			</Directory>
-			Alias /static /var/www/FlaskApp/FlaskApp/static
-			<Directory /var/www/FlaskApp/FlaskApp/static/>
-				Order allow,deny
-				Allow from all
-			</Directory>
-			ErrorLog ${APACHE_LOG_DIR}/error.log
-			LogLevel warn
-			CustomLog ${APACHE_LOG_DIR}/access.log combined
-		</VirtualHost>
-	• Enable the virtual host with the following command: sudo a2ensite FlaskApp
-	
-	
-	• Create the .wsgi File under /var/www/FlaskApp:
-		cd /var/www/FlaskApp
-		sudo nano flaskapp.wsgi 
-	• Add the following lines of code to the flaskapp.wsgi file:
-		#!/usr/bin/python
-		import sys
-		import logging
-		logging.basicConfig(stream=sys.stderr)
-		sys.path.insert(0,"/var/www/FlaskApp/")
-
-		from FlaskApp import app as application
-		application.secret_key = 'Add your secret key'
 	• Restart Apache sudo service apache2 restart
 	
 
