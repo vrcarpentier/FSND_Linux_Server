@@ -48,7 +48,7 @@ This project is linked to the Configuring Linux Web Servers course, which teache
 # Login to server:
 Download the default AWS keypair
 
-Login as ubuntu by running ssh ubuntu@54.236.63.16 -p 22 -i ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
+Login as ubuntu by running ssh ubuntu@34.205.53.16 -p 22 -i ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
 	
 # Create a new user account named grader:
 	• sudo adduser grader 
