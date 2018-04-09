@@ -1,7 +1,7 @@
 # FSND_Linux_Server
 This project is linked to the Configuring Linux Web Servers course, which teaches you to secure and set up a Linux server. By the end of this project, you will have one of your web applications running live on a secure web server.
 
-• Public IP: 34.201.1.86
+• Public IP: 34.205.53.16
 
 • SSH Port: 2200
 
@@ -79,15 +79,11 @@ Login as ubuntu by running ssh ubuntu@54.236.63.16 -p 22 -i ~/.ssh/LightsailDefa
 	Now, go to your lightsail terminal and:
 		• sudo su - grader
 		• sudo mkdir .ssh
-		• touch .ssh/authorized_keys
+		• sudo touch .ssh/authorized_keys
 		• sudo nano .ssh/authorized_keys and paste your public key into the authorized_keys file
 		• sudo chmod 700 .ssh
 		• sudo chmod 644 .ssh/authorized_keys
-	Now, you should be able to log in from your local machine as grader
-		• ssh grader@PUBLIC_IP -p 2200 ~/.ssh/udacity_keypair
-		• sudo nano /etc/ssh/sshd_config
-			Change PasswordAuthentication from yes to no
-		• sudo service ssh restart
+	
 # Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123):
 	• sudo ufw default deny incoming 
 	• sudo ufw default allow outgoing
@@ -95,14 +91,17 @@ Login as ubuntu by running ssh ubuntu@54.236.63.16 -p 22 -i ~/.ssh/LightsailDefa
 	• sudo ufw allow 80/tcp
 	• sudo ufw allow 123/udp
 	• sudo ufw enable
+	• sudo service ssh restart
 	
 # Configure the local timezone to UTC.
 	• sudo dpkg-reconfigure tzdata
 	• select "None of the above"
 	• select "UTC"
+	• sudo service ssh restart
+	
 		
 Now I can login remotely as grader by running 
-	• ssh grader@54.236.63.16 -p 2200 -i ~/.ssh/udacity_keypair
+	• ssh grader@34.205.53.16 -p 2200 -i ~/.ssh/udacity_keypair
 
 # Install and configure Apache to serve a Python mod_wsgi application.
 	• sudo apt-get install ntp
