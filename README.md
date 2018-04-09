@@ -103,38 +103,82 @@ Login as ubuntu by running ssh ubuntu@34.205.53.16 -p 22 -i ~/.ssh/LightsailDefa
 Now I can login remotely as grader by running 
 	• ssh grader@34.205.53.16 -p 2200 -i ~/.ssh/udacity_keypair
 
-# Install and configure Apache to serve a Python mod_wsgi application.
-	• sudo apt-get install ntp
-	
+# Install and configure Apache to serve a Python mod_wsgi application:	
 	• sudo apt-get install apache2
-	• sudo apt-get install libapache2-mod-wsgi python-dev
+	• sudo apt-get install python-setuptools libapache2-mod-wsgi
 	• sudo service apache2 restart
-	
-	• sudo apt-get install git
-	• git config --global user.name 'vrcarpentier'
-	• git config --global user.email 'vrcarpentier@gmail.com'
-	
-	sudo apt-get install libapache2-mod-wsgi python-dev
-	cd /var/www
-	sudo mkdir catalog 
-	cd catalog
-	sudo mkdir catalog
+	(now you can go to your ip address in your browser and see an apache2 message)
 	
 	• sudo apt-get install postgresql
+	• Check if no remote connections are allowed sudo vi /etc/postgresql/9.3/main/pg_hba.conf
 	• sudo su - postgres
 	• psql
-	• CREATE DATABASE catalog;
-	• CREATE USER catalog;
-	• ALTER ROLE catalog WITH PASSWORD 'password';
-	• GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
+	• postgres=# CREATE DATABASE catalog;
+	• postgres=# CREATE USER catalog;
+	• postgres=# ALTER ROLE catalog WITH PASSWORD 'password';
+	• postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
 	• \q
 	• exit
 
 # Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser.
-	• sudo apt-get install git
+	• sudo apt-get install git 
 	• cd /var/www
-	• sudo mkdir app
+	• sudo mkdir FlaskApp
+	• cd FlaskApp
+	• sudo chmod 777 /var/www/FlaskApp
 	• git clone https://github.com/vrcarpentier/FSND_Catalog.git
+	• sudo mv ./FSND_Catalog ./FlaskApp
+	• cd FlaskApp
+	• cd catalog
+	• sudo mv webserver.py __init__.py
+	• sudo nano database_setup.py and change engine = create_engine('sqlite:///catalog.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog')
+	• sudo nano lotsofmenus.py and change engine = create_engine('sqlite:///catalog.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog').
+	• sudo apt-get install python-pip
+	• sudo pip install sqlalchemy flask-sqlalchemy psycopg2 bleach requests
+	• sudo pip install flask packaging oauth2client redis passlib flask-httpauth
+	• sudo apt-get -qqy install postgresql python-psycopg2
+	• sudo python database_setup.py
+	• sudo pip install lotsofmenus.py
+	
+	• sudo vi /etc/apache2/sites-available/FlaskApp.conf
+	• paste in:
+		<VirtualHost *:80>
+			ServerName fill_catalog.py
+			ServerAdmin mehraaditya713@gmail.com
+			WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi
+			<Directory /var/www/FlaskApp/FlaskApp/>
+				Order allow,deny
+				Allow from all
+			</Directory>
+			Alias /static /var/www/FlaskApp/FlaskApp/static
+			<Directory /var/www/FlaskApp/FlaskApp/static/>
+				Order allow,deny
+				Allow from all
+			</Directory>
+			ErrorLog ${APACHE_LOG_DIR}/error.log
+			LogLevel warn
+			CustomLog ${APACHE_LOG_DIR}/access.log combined
+		</VirtualHost>
+	• sudo service apache2 reload
+	
+	• cd /var/www/FlaskApp
+	• sudo vi FlaskApp.wsgi
+	• paste in:
+		#!/usr/bin/python
+		import sys
+		import logging
+		logging.basicConfig(stream=sys.stderr)
+		sys.path.insert(0,"/var/www/FlaskApp/")
+
+		from FlaskApp import app as application
+		application.secret_key = 'super_secret_key'
+
+
+
+
+
+	
+	
 	• sudo mv ./Item_Catalog_UDACITY ./FlaskApp
 	• cd FlaskApp
 	• Rename website.py to __init__.py using sudo mv website.py __init__.py
