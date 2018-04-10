@@ -1,7 +1,7 @@
 # FSND_Linux_Server
 This project is linked to the Configuring Linux Web Servers course, which teaches you to secure and set up a Linux server. By the end of this project, you will have one of your web applications running live on a secure web server.
 
-• Public IP: 35.172.209.100
+• Public IP: 54.236.59.234
 
 • SSH Port: 2200
 
@@ -46,9 +46,9 @@ This project is linked to the Configuring Linux Web Servers course, which teache
 • psychopg2: postgresql adapter for python
 
 # Login to server:
-Download the default AWS keypair and place it in your local .ssh directory.
-
-Login as ubuntu by running ssh ubuntu@35.172.209.100 -p 22 -i ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
+Download the default AWS keypair and place it in your local .ssh directory as lightsailkey.rsa
+Open your terminal and run chmod 600 ~/.ssh/lightsailkey.rsa
+Login as ubuntu by running ssh ubuntu@54.236.59.234 -p 22 -i ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
 	
 # Create a new user account named grader:
 	• sudo adduser grader 
