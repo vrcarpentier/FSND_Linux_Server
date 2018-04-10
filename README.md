@@ -114,13 +114,13 @@ Now I can login remotely as grader by running
 	• sudo apt-get install postgresql
 	• sudo su - postgres
 	• psql
-	• postgres=# CREATE DATABASE catalog;
-	• postgres=# CREATE USER catalog;
-	• postgres=# ALTER ROLE catalog WITH PASSWORD 'password';
+	• postgres=# CREATE USER catalog WITH PASSWORD 'password';
+	• postgres=# ALTER USER catalog CREATEDB;
+	• postgres=# CREATE DATABASE catlog WITH OWNER catalog;;
 	• postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
 	• \q
 	• exit
-
+	
 # Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser.
 	• sudo apt-get install git 
 	• cd /var/www
