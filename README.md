@@ -46,8 +46,10 @@ This project is linked to the Configuring Linux Web Servers course, which teache
 • psychopg2: postgresql adapter for python
 
 # Login to server:
-Download the default AWS keypair and place it in your local .ssh directory as lightsailkey.rsa
-Open your terminal and run chmod 600 ~/.ssh/lightsailkey.rsa
+Download the default AWS keypair and place it in your local .ssh directory
+
+Open your terminal and run chmod 600 ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
+
 Login as ubuntu by running ssh ubuntu@54.236.59.234 -p 22 -i ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
 	
 # Create a new user account named grader:
