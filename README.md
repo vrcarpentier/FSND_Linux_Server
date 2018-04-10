@@ -91,6 +91,7 @@ Login as ubuntu by running ssh ubuntu@54.236.59.234 -p 22 -i ~/.ssh/LightsailDef
 	• sudo ufw allow 123/udp
 	• sudo ufw enable
 	• sudo service ssh restart
+	• change the lightsail settings in the GUI/Networking tab to match these settings
 	
 # Configure the local timezone to UTC.
 	• sudo dpkg-reconfigure tzdata
