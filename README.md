@@ -69,6 +69,8 @@ Login as ubuntu by running ssh ubuntu@54.236.59.234 -p 22 -i ~/.ssh/LightsailDef
 # Change the SSH port from 22 to 2200:
 	• sudo nano /etc/ssh/sshd_config 
 		Change port 22 to 2200
+		PasswordAuthentiation from yes to no
+		and PermitRootLogin from yes to no
 
 # Create an SSH key pair for grader using the ssh-keygen tool:
 	While in the terminal of you local machine:
