@@ -78,9 +78,7 @@ Login as ubuntu by running ssh ubuntu@54.236.59.234 -p 22 -i ~/.ssh/LightsailDef
 		• copy public key
 	Now, go to your lightsail terminal and:
 		• sudo su - grader
-		• sudo su - grader
-		• sudo mkdir .ssh
-		• sudo touch .ssh/authorized_keys
+		• mkdir .ssh
 		• sudo nano .ssh/authorized_keys and paste your public key into the authorized_keys file
 		• sudo chmod 700 .ssh
 		• sudo chmod 644 .ssh/authorized_keys
