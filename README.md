@@ -173,11 +173,14 @@ Now I can login remotely as grader by running
 	GRANT ALL ON SCHEMA public TO catalog;
 	\q
 	exit
-	
-	python /var/www/FlaskApp/FlaskApp/static/database_setup.py
-	python /var/www/FlaskApp/FlaskApp/static/lotsofitems.py
+	• sudo nano database_setup.py and change engine = create_engine('sqlite:///catalog.db') 
+		to engine = create_engine('postgresql://catalog:password@localhost/catalog')
+	• sudo nano lotsofmenus.py and change engine = create_engine('sqlite:///catalog.db') 
+		to engine = create_engine('postgresql://catalog:password@localhost/catalog').
+	python database_setup.py
+	python lotsofitems.py
 	cd /var/www/FlaskApp/FlaskApp/static
-	python /var/www/FlaskApp/FlaskApp/static/init.py
+	python init.py
 	
 	sudo service apache2 restart
 	
@@ -206,8 +209,7 @@ Now I can login remotely as grader by running
 		
 		if __name__ == "__main__":
         	    app.run()
-	• sudo nano database_setup.py and change engine = create_engine('sqlite:///catalog.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog')
-	• sudo nano lotsofmenus.py and change engine = create_engine('sqlite:///catalog.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog').
+	
 	• sudo apt-get install python-pip
 	sudo pip install virtualenv
 	sudo virtualenv venv
