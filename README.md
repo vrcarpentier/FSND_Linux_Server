@@ -126,20 +126,6 @@ Now I can login remotely as grader by running
 	• sudo chmod -R 777 venv
 	• pip install Flask requests oauth2client flask-httpauth sqlalchemy psycopg2 psycopg2-binary
 	
-
-(Below steps are not working to get app up and running)
-
-	
-	• sudo apt-get install postgresql
-	• sudo su - postgres
-	• psql
-	• postgres=# CREATE USER catalog WITH PASSWORD 'password';
-	• postgres=# ALTER USER catalog CREATEDB;
-	• postgres=# CREATE DATABASE catlog WITH OWNER catalog;;
-	• postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
-	• \q
-	• exit
-	
 # Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser.
 	• sudo nano /etc/apache2/sites-available/FlaskApp.conf
 		<VirtualHost *:80>
@@ -208,9 +194,7 @@ Now I can login remotely as grader by running
 	
 	
 	
-	• sudo mv ./FSND_Catalog ./FlaskApp
-	• cd FlaskApp
-	• cd catalog
+	
 	• sudo mv webserver.py __init__.py
 		from flask import Flask
 
