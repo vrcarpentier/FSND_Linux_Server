@@ -102,14 +102,33 @@ Login as ubuntu by running ssh ubuntu@54.236.59.234 -p 22 -i ~/.ssh/LightsailDef
 		
 Now I can login remotely as grader by running 
 	• ssh grader@35.172.209.100 -p 2200 -i ~/.ssh/udacity_keypair
-
-(Below steps are not working to get app up and running)
+	
 # Install and configure Apache to serve a Python mod_wsgi application:	
 	• sudo apt-get install apache2
-	• sudo apt-get install python-setuptools
-	• sudo apt-get install libapache2-mod-wsgi
+	• sudo apt-get install libapache2-mod-wsgi python-dev
+	• sudo a2enmod wsgi
 	• sudo service apache2 restart
 	(now you can go to your ip address in your browser and see an apache2 message)
+	(get the hostname with http://www.hcidata.info/host2ip.cgi)
+
+# Install Git
+	• sudo apt-get install git
+	• cd /var/www
+	• sudo mkdir FlaskApp
+	• cd FlaskApp
+	• sudo git clone https://github.com/vrcarpentier/FSND_Catalog FlaskApp
+	• cd /var/www
+	• sudo chown -R 777 grader:grader FlaskApp
+	• sudo apt-get install python-pip
+	• sudo pip install virtualenv
+	• sudo virtualenv venv
+	• source venv/bin/activate
+	• sudo chmod -R 777 venv
+	• pip install Flask requests oauth2client flask-httpauth sqlalchemy psycopg2 psycopg2-binary
+	
+
+(Below steps are not working to get app up and running)
+
 	
 	• sudo apt-get install postgresql
 	• sudo su - postgres
@@ -122,12 +141,73 @@ Now I can login remotely as grader by running
 	• exit
 	
 # Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser.
-	• sudo apt-get install git 
-	• cd /var/www
-	• sudo mkdir FlaskApp
-	• cd FlaskApp
-	• sudo chmod 777 /var/www/FlaskApp
-	• git clone https://github.com/vrcarpentier/FSND_Catalog.git
+	• sudo nano /etc/apache2/sites-available/FlaskApp.conf
+		<VirtualHost *:80>
+		    ServerName example.com
+		    ServerAdmin vrcarpentier@gmail.com
+		    WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi
+		    <Directory /var/www/FlaskApp/FlaskApp/>
+			Order allow,deny
+			Allow from all
+		    </Directory>
+		    Alias /static /var/www/FlaskApp/FlaskApp/static
+		    <Directory /var/www/FlaskApp/FlaskApp/static/>
+			Order allow,deny
+			Allow from all
+		    </Directory>
+		    ErrorLog ${APACHE_LOG_DIR}/error.log
+		    LogLevel warn
+		    CustomLog ${APACHE_LOG_DIR}/access.log combined
+		</VirtualHost>
+	• sudo a2ensite FlaskApp
+	• a2dissite 000-default
+	• cd /var/www/FlaskApp/ 
+	• sudo nano flaskapp.wsgi
+		#! /usr/bing/python
+
+		import sys
+		import logging
+
+		logging.basicConfig(stream=sys.stderr)
+		sys.path.insert(0, "/var/www/FlaskApp/")
+
+		from FlaskApp import app as application
+		application.secret_key = "super_secret_key"
+	
+# Configure PostgreSQL
+	• sudo apt-get install libpq-dev python-dev
+	sudo apt-get install postgresql postgresql-contrib
+	sudo su - postgres
+	psql
+	CREATE USER catalog WITH PASSWORD 'grader';
+	ALTER USER catalog CREATEDB;
+	CREATE DATABASE catalog WITH OWNER catalog; 
+	\c catalog
+	REVOKE ALL ON SCHEMA public FROM public;
+	GRANT ALL ON SCHEMA public TO catalog;
+	\q
+	exit
+	
+	python /var/www/FlaskApp/FlaskApp/static/database_setup.py
+	python /var/www/FlaskApp/FlaskApp/static/lotsofitems.py
+	cd /var/www/FlaskApp/FlaskApp/static
+	python /var/www/FlaskApp/FlaskApp/static/init.py
+	
+	sudo service apache2 restart
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	• sudo mv ./FSND_Catalog ./FlaskApp
 	• cd FlaskApp
 	• cd catalog
@@ -151,37 +231,13 @@ Now I can login remotely as grader by running
 	sudo pip isntall Flask
 	deactivate
 	sudo nano /etc/apache2/sites-available/FlaskApp.conf
-		<VirtualHost *:80>
-			ServerName lotsofmenus.py
-			ServerAdmin vrcarpentier@gmail.com
-			WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi
-			<Directory /var/www/FlaskApp/FlaskApp/>
-				Order allow,deny
-				Allow from all
-			</Directory>
-			Alias /static /var/www/FlaskApp/FlaskApp/static
-			<Directory /var/www/FlaskApp/FlaskApp/static/>
-				Order allow,deny
-				Allow from all
-			</Directory>
-			ErrorLog ${APACHE_LOG_DIR}/error.log
-			LogLevel warn
-			CustomLog ${APACHE_LOG_DIR}/access.log combined
-		</VirtualHost>
+		
+
 	sudo a2ensite FlaskApp
 	service apache2 reload
 	cd /var/www/flaskapp
 	sudo nano flaskapp.wsgi
-		#! /usr/bing/python
-
-		import sys
-		import logging
-
-		logging.basicConfig(stream=sys.stderr)
-		sys.path.insert(0, "/var/www/FlaskApp/")
-
-		from FlaskApp import app as application
-		application.secret_key = "super_secret_key"
+		
 		
 	sudo service apache2 restart
 	• sudo pip install sqlalchemy flask-sqlalchemy psycopg2 bleach requests
@@ -191,8 +247,5 @@ Now I can login remotely as grader by running
 	• sudo pip install lotsofmenus.py	
 
 # References:
-https://aws.amazon.com/premiumsupport/knowledge-center/new-user-accounts-linux-instance/
-https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html#how-to-generate-your-own-key-and-import-it-to-aws
-https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair
 https://forums.aws.amazon.com/thread.jspa?threadID=160352
 http://brianflove.com/2013/06/18/add-new-sudo-user-to-ec2-ubuntu/
