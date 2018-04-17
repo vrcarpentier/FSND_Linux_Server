@@ -1,7 +1,7 @@
 # FSND_Linux_Server
 This project is linked to the Configuring Linux Web Servers course, which teaches you to secure and set up a Linux server. By the end of this project, you will have one of your web applications running live on a secure web server.
 
-• Public IP: 54.236.59.234
+• Public IP: 52.73.233.205
 
 • SSH Port: 2200
 
@@ -50,7 +50,7 @@ Download the default AWS keypair and place it in your local .ssh directory
 
 Open your terminal and run chmod 600 ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
 
-Login as ubuntu by running ssh ubuntu@54.236.59.234 -p 22 -i ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
+Login as ubuntu by running ssh ubuntu@52.73.233.205 -p 22 -i ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
 	
 # Create a new user account named grader:
 	• sudo adduser grader 
@@ -101,7 +101,7 @@ Login as ubuntu by running ssh ubuntu@54.236.59.234 -p 22 -i ~/.ssh/LightsailDef
 	
 		
 Now I can login remotely as grader by running 
-	• ssh grader@35.172.209.100 -p 2200 -i ~/.ssh/udacity_keypair
+	• ssh grader@52.73.233.205 -p 2200 -i ~/.ssh/udacity_keypair
 	
 # Install and configure Apache to serve a Python mod_wsgi application:	
 	• sudo apt-get install apache2
