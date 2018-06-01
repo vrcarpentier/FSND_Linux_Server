@@ -149,7 +149,7 @@ Now I can login remotely as grader by running
 	• a2dissite 000-default
 	• cd /var/www/FlaskApp/ 
 	• sudo nano flaskapp.wsgi
-		#! /usr/bing/python
+		#! /usr/bin/python
 
 		import sys
 		import logging
@@ -235,3 +235,75 @@ Now I can login remotely as grader by running
 # References:
 https://forums.aws.amazon.com/thread.jspa?threadID=160352
 http://brianflove.com/2013/06/18/add-new-sudo-user-to-ec2-ubuntu/
+
+6/1/18
+************
+while logged in as root
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get apache2
+sudo apt-get install libapache2-mod-wsgi
+sudo a2endmod wsgi
+cd /var/www
+sudo mkdir FlaskApp
+sudo mkdir FlaskApp
+cd FlaskApp
+
+while in /var/www/FlaskApp/FlaskApp
+sudo mkdir static
+sudo mkdir templates
+sudo nano __init__.py
+	from flask  import Flask
+	
+	app = Flask(__name__)
+	
+	@app.route("/")
+	def hompeage():
+	    return "Hi Dan. Hi Adam. Hi Pete."
+	    
+	if __name__ == "__main__"
+	   app.run()
+	   
+sudo apt-get install python-pip
+pip install virutalenv
+sudo virtualenv venv
+source venv/bin/activate  (this activates the virutal environment where we will install Flask)
+pip install Flask
+sudo python __init__.py  (to ensure it's running)
+CTRL + C  (to close server)
+deactivate  (to turn off virtual env)
+
+sudo nano /etc/apache2/sites-available/FlaskApp.conf
+	<VirtualHost *:80>
+		    ServerName vincecarpentier.com
+		    ServerAdmin yoyo@yoyo.com
+		    WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi
+		    <Directory /var/www/FlaskApp/FlaskApp/>
+			Order allow,deny
+			Allow from all
+		    </Directory>
+		    Alias /static /var/www/FlaskApp/FlaskApp/static
+		    <Directory /var/www/FlaskApp/FlaskApp/static/>
+			Order allow,deny
+			Allow from all
+		    </Directory>
+		    ErrorLog ${APACHE_LOG_DIR}/error.log
+		    LogLevel warn
+		    CustomLog ${APACHE_LOG_DIR}/access.log combined
+		</VirtualHost>
+		
+service apache2 reload
+sudo a2ensite FlaskApp
+cd /var/www/FlaskApp
+sudo nano flaskapp.wsgi
+		#! /usr/bin/python
+
+		import sys
+		import logging
+
+		logging.basicConfig(stream=sys.stderr)
+		sys.path.insert(0, "/var/www/FlaskApp/")
+
+		from FlaskApp import app as application
+		application.secret_key = "super_secret_key"
+
