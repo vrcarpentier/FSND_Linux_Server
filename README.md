@@ -186,6 +186,7 @@ Now I can login remotely as grader by running
 	sudo service apache2 restart
 	
 # Third Party Resource List
+	• https://discussions.udacity.com/t/problems-with-the-digital-ocean-tutorial/336376
 	• https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-16-04
 	• https://www.youtube.com/watch?v=dBgiMtSqbWQ
 	• https://www.youtube.com/watch?v=_80H2WIuA7w
