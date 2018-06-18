@@ -51,7 +51,7 @@ Download the default AWS keypair and place it in your local .ssh directory
 
 Open your terminal and run chmod 600 ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
 
-Login as ubuntu by running ssh ubuntu@52.73.233.205 -p 22 -i ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
+Login as ubuntu by running ssh ubuntu@13.58.244.100 -p 22 -i ~/.ssh/LightsailDefaultPrivateKey-us-east-1.pem
 	
 # Create a new user account named grader:
 	• sudo adduser grader 
@@ -102,7 +102,7 @@ Login as ubuntu by running ssh ubuntu@52.73.233.205 -p 22 -i ~/.ssh/LightsailDef
 	
 		
 Now I can login remotely as grader by running 
-	• ssh grader@52.73.233.205 -p 2200 -i ~/.ssh/udacity_keypair
+	• ssh grader@13.58.244.100 -p 2200 -i ~/.ssh/udacity_keypair
 	
 # Install and configure Apache to serve a Python mod_wsgi application:	
 	• sudo apt-get install apache2
